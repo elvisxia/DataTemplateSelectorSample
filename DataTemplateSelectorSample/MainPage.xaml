@@ -1,0 +1,27 @@
+﻿<Page
+    x:Class="DataTemplateSelectorSample.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:DataTemplateSelectorSample"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:selector="using:DataTemplateSelectorSample.TemplateSelectors"
+    mc:Ignorable="d">
+    <Page.Resources>
+        <DataTemplate x:Key="VipTemplate">
+            <StackPanel Background="Green" Width="500" Height="25">
+                <TextBlock Text="{Binding Name}"></TextBlock>
+            </StackPanel>
+        </DataTemplate>
+        <DataTemplate x:Key="CustomerTemplate">
+            <StackPanel  Width="500" Height="25">
+                <TextBlock Text="{Binding Name}"></TextBlock>
+            </StackPanel>
+        </DataTemplate>
+        <selector:MyTemplateSelector x:Key="userTemplateSelector" CustomerTemplate="{StaticResource ResourceKey=CustomerTemplate}" VIPTemplate="{StaticResource ResourceKey=VipTemplate}"/>
+    </Page.Resources>
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <ListView Name="myListView" ItemTemplateSelector="{StaticResource userTemplateSelector}"></ListView>
+    </Grid>
+</Page>
